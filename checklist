@@ -1,0 +1,7 @@
+bcre                settings.py urls.py  x
+listings            urls.py views.py     x
+pages               urls.py views.py     x
+templates-listings  listing.html listings.html search.html
+templates-pages     about.html  index.html     x
+templates-partials  _navbar.html         x
+templates           base.html            x

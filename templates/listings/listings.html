@@ -1,11 +1,11 @@
-{% extend 'base.html' %} {% block content %}
-<h1>listings 1</h1>
+{% extends 'base.html' %} {% block content %} 
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
           <h1 class="display-4">Browse Our Properties</h1>
           <p class="lead">
+            {{listings}}  {% comment %} dictionary variale 'listings' from the views.py call function in app {% endcomment %}
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt,
             pariatur!
           </p>
@@ -20,6 +20,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
+            {% comment %} fix index.html {% endcomment %}
             <a href="{% url 'index' %}"> <i class="fas fa-home"></i> Home</a>
           </li>
           <li class="breadcrumb-item active">Browse Listings</li>
@@ -34,10 +35,9 @@
       <div class="row">
         <!-- Listing 1 -->
         <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img
-              class="card-img-top"
-              src="assets/img/homes/home-1.jpg"
+          {% comment %} fix image {% endcomment %}
+          <img class="card-img-top"
+              src="/img/homes/home-1.jpg"
               alt=""
             />
             <div class="card-img-overlay">
@@ -84,7 +84,7 @@
                 </div>
               </div>
               <hr />
-              {% commet %} fix later {% endcomment %}
+               {% comment %} fix listing.html {% endcomment %}
               <a href="listing.html" class="btn btn-primary btn-block"
                 >More Info</a
               >
@@ -95,8 +95,8 @@
         <!-- Listing 2 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img
-              class="card-img-top"
+            {% comment %} fix image {% endcomment %}
+            <img class="card-img-top"
               src="assets/img/homes/home-2.jpg"
               alt=""
             />
@@ -142,7 +142,7 @@
                 </div>
               </div>
               <hr />
-              {% comment %} fix later {% endcomment %}
+               {% comment %} fix listing.html {% endcomment %}
               <a href="listing.html" class="btn btn-primary btn-block"
                 >More Info</a
               >
@@ -153,8 +153,8 @@
         <!-- Listing 3 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img
-              class="card-img-top"
+            {% comment %} fix image {% endcomment %}
+            <img class="card-img-top"
               src="assets/img/homes/home-3.jpg"
               alt=""
             />
@@ -200,7 +200,7 @@
                 </div>
               </div>
               <hr />
-              {% comment %} fix later {% endcomment %}
+               {% comment %} fix listing.html {% endcomment %}
               <a href="listing.html" class="btn btn-primary btn-block"
                 >More Info</a
               >
@@ -211,8 +211,8 @@
         <!-- Listing 4 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img
-              class="card-img-top"
+            {% comment %} fix image {% endcomment %}
+            <img class="card-img-top"
               src="assets/img/homes/home-4.jpg"
               alt=""
             />
@@ -259,7 +259,7 @@
                 </div>
               </div>
               <hr />
-              {% comment %} fix later {% endcomment %}
+               {% comment %} fix listing.html {% endcomment %}
               <a href="listing.html" class="btn btn-primary btn-block"
                 >More Info</a
               >
@@ -270,8 +270,8 @@
         <!-- Listing 5 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img
-              class="card-img-top"
+            {% comment %} fix image {% endcomment %}
+            <img class="card-img-top"
               src="assets/img/homes/home-5.jpg"
               alt=""
             />
@@ -316,7 +316,7 @@
                 </div>
               </div>
               <hr />
-              {% comment %} fix later {% endcomment %}
+               {% comment %} fix listing.html {% endcomment %}
               <a href="listing.html" class="btn btn-primary btn-block"
                 >More Info</a
               >
@@ -327,8 +327,8 @@
         <!-- Listing 6 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img
-              class="card-img-top"
+            {% comment %} fix image {% endcomment %}
+            <img class="card-img-top"
               src="assets/img/homes/home-6.jpg"
               alt=""
             />
@@ -373,7 +373,7 @@
                 </div>
               </div>
               <hr />
-              {% comment %} fix later {% endcomment %}
+               {% comment %} fix listing.html {% endcomment %}
               <a href="listing.html" class="btn btn-primary btn-block"
                 >More Info</a
               >
@@ -405,6 +405,4 @@
       </div>
     </div>
   </section>
-
 {% endblock %}
-
