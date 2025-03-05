@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
-    'realtors.apps.RealtorsConfig', # database of the staff, no urls 
+    'realtors.apps.RealtorsConfig', # database of the staff, no urls, no specific realtors endpoint 
     
 ]
 
@@ -140,5 +140,5 @@ INTERNAL_IPS = [
     # ...
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # project create media root folder /MEDIA
+MEDIA_URL = '/media/' # url for template use to construct expression
