@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 # 3-5
 from . models import Listing  # . current directory
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q, F
 
 
 # Create your views here.
@@ -17,7 +18,15 @@ def listings(request):
     # -ve latest input record display first
     # filter is_published is a parameter, order_by is query set
     # query set
-    listings = Listing.objects.order_by('-list_date').filter(is_published=True)
+    
+    # listings = Listing.objects.order_by('-list_date').filter(is_published=True) 
+
+    # Q object
+    # listings = Listing.objects.filter(Q(district='tst')|Q(district='mk'))
+
+    # F object
+    listings = Listing.objects.filter(district=F('address'))
+
     # 2025-3-6
     paginator = Paginator(listings, 3)  # 3 record in 1 page
     page = request.GET.get('page')   # GET htpp:GET method. get fcn() obtain the page number
@@ -27,7 +36,9 @@ def listings(request):
     return render(request, 'listings/listings.html', context )
 
 def listing(request, listing_id):
-    return render(request, 'listings/listing.html')
+    listing = get_object_or_404(Listing, pk=listing_id)
+    context = {'listing': listing}
+    return render(request, 'listings/listing.html', context)
 
 def search(request):
     return render(request, 'listings/search.html')
