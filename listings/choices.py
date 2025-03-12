@@ -34,7 +34,7 @@ district_choices = {
     "Sha Tin": "Sha Tin",
     "Tai Po": "Tai Po",
     "Kowloon City": "Kowloon City",
-    "Kung Tong": "Kwun Tong",
+    "Kwun Tong": "Kwun Tong",
     "Sham Shui Po": "Sham Shui Po",
     "Yau Tsim Mong": "Yau Tsim Mong",
     "Central & Western": "Central & Western",

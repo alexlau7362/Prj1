@@ -19,13 +19,13 @@ def listings(request):
     # filter is_published is a parameter, order_by is query set
     # query set
     
-    # listings = Listing.objects.order_by('-list_date').filter(is_published=True) 
+    listings = Listing.objects.order_by('-list_date').filter(is_published=True) 
 
     # Q object
     # listings = Listing.objects.filter(Q(district='tst')|Q(district='mk'))
 
     # F object
-    listings = Listing.objects.filter(district=F('address'))
+    # listings = Listing.objects.filter(district=F('address'))
 
     # 2025-3-6
     paginator = Paginator(listings, 3)  # 3 record in 1 page
