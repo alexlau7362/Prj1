@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">{{listing.title}}</h1>
+          <h1 class="display-4">{{listing.title | title}}</h1>
           <p class="lead"><i class="fas fa-map-marker"></i> {{listing.distric}}</p>
         </div>
       </div>
@@ -17,12 +17,13 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="{% url 'index' %}">Home</a>
+            <a href={% url 'index' %}>Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="{% url 'listings' %}">Listings</a>
+            <a href={% url 'listings' %}>Listings</a>
           </li>
-          <li class="breadcrumb-item active">{{listing.title}}</li>
+          <li class="breadcrumb-item active">{{listing.title | title}}</li>
+
         </ol>
       </nav>
     </div>
@@ -31,6 +32,7 @@
   <!-- Listing -->
   <section id="listing" class="py-4">
     <div class="container">
+      {% include 'partials/_alert.html' %}
       <a href="{% url 'listings' %}" class="btn btn-light mb-4">Back To Listings</a>
       <div class="row">
         <div class="col-md-9">
@@ -220,7 +222,20 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+
+          <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+            <!--check user id-->
+            {% if user.is_authenticated %}
+              <input type="hidden" name="user_id" value="{{user.id}}"/>
+            {% else %}
+              <input type="hidden" name="user_id" value="0"/>
+            {% endif %}
+            <!-- end of check user id -->
+
+            <input type="hidden" name="listing_id" value="{{listing.id}}"/>
+            <input type='hidden' name='realtor_email' value="{{listing.realtor.email}}" />
+
             <div class="form-group">
               <label for="property_name" class="col-form-label"
                 >Property:</label
@@ -229,26 +244,38 @@
                 type="text"
                 name="listing"
                 class="form-control"
-                value="45 Prince Street"
-                disabled
+                value="{{listing.title}}"
+                readonly
               />
             </div>
             <div class="form-group">
               <label for="name" class="col-form-label">Name:</label>
-              <input type="text" name="name" class="form-control" required />
+              {% if user.is_authenticated %}
+                <input type="text" name="name" value="{{user.first_name}}" {{user.last_name}} class="form-control" readonly/>
+              {% else %}
+                <input type="text" name="name" class="form-control" readonly />
+              {% endif %}
+              
             </div>
+
             <div class="form-group">
               <label for="email" class="col-form-label">Email:</label>
+              {% if user.is_authenticated %}
               <input
-                type="email"
-                name="email"
-                class="form-control"
-                required
-              />
+                  type="email"
+                  name="email"
+                  value="{{user.email}}"
+                  class="form-control"
+                  required
+                />
+              {% else %}
+                <input type="email" name="email" class="form-control" required />
+              {% endif %}
+
             </div>
             <div class="form-group">
               <label for="phone" class="col-form-label">Phone:</label>
-              <input type="text" name="phone" class="form-control" />
+              <input type="text" name="phone" class="form-control" />              
             </div>
             <div class="form-group">
               <label for="message" class="col-form-label">Message:</label>
