@@ -12,27 +12,27 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        if password != password2:
-            messages.error(request, "Passwords do not match!")
-            return redirect('register')
-
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username already exist!')
-            return redirect('register')
-
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email already exist!')
-            return redirect('register')
-
-        user = User.objects.create_user(username=username,password=password,
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, 'Username already exist!')
+                return redirect('register')
+            else:
+               if User.objects.filter(email=email).exists():
+                   messages.error(request, 'Email already exist!')
+                   return redirect('register')
+               else:
+                   user = User.objects.create_user(username=username,password=password,
                                                    email=email,first_name=first_name,
                                                    last_name=last_name)
-        user.save()
-        messages.success(request, "You are now registered and can log in")
-        return redirect('login')
-       
-    # For GET requests, just render the form without an error
-    return render(request, 'accounts/register.html')
+                   user.save()
+                   messages.success(request, "You are now registered and can log in")
+                   return redirect('login')
+        else:
+            messages.error(request, "Password not match !")
+            return redirect('register')
+    else:
+        messages.error(request, "Invalid acccess!")
+        return render(request, 'accounts/register.html')
 
 
 
@@ -63,3 +63,4 @@ def dashboard(request):
         'contacts': user_contacts
     }
     return render(request, 'accounts/dashboard.html',context)
+
