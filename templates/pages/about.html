@@ -1,5 +1,5 @@
 {%extends 'base.html'%} {% load static %} {% block content %}
-<h1>About</h1>
+
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
@@ -38,7 +38,7 @@
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt,
             pariatur!
           </p>
-          <img src="{% static 'img/about.jpg' %}"" alt=""/>
+          <img src="{% static 'img/about.jpg' %}" alt=""/>
           <p class="mt-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Perspiciatis esse officia repudiandae ad saepe ex, amet neque quod
@@ -54,7 +54,7 @@
             <img
               class="card-img-top"
               {% comment %} fix index.html {% endcomment %}
-              src= "{{ realtor.photo.url }}"
+              src="{{realtor.photo.url}}"
               alt="Seller of the month"
             />
             <div class="card-body">
@@ -78,7 +78,7 @@
       aperiam, unde aliquid at similique!
     </h4>
     <hr />
-    <a href="{% url 'listings' %} class="btn btn-secondary text-white btn-lg"
+    <a href="{% url 'listings' %}" class="btn btn-secondary text-white btn-lg"
       >View Our Featured Listings</a>
   </section>
 
